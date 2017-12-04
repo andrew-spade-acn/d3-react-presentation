@@ -102,19 +102,8 @@ In HTML:
 What's the best way to combine them?
 
 1. The D3 Purist
-2. The React 
-3. DOM emulation
-
-+++
-
-Let's test these, conceptually, with a minimal concept: a colored dot.
-
-```javascript
-export class Circle extends React.Component {
-  render() {
-  }
-}
-```
+2. The React Holdout
+3. The DOM Emulator
 ---
 #### The D3 Purist
 
@@ -160,15 +149,15 @@ export class CircleD3 extends Component {
 #### Consequences
 
 Pros:
-* It's super fast.
+* It's fast.
 * It's lightweight.
-* It allows writing normal, quintessential D3. This is great for onboarding new devs, accessing the wealth of online resources, and getting external help help.
+* It allows writing normal D3 code. This is great for onboarding new devs, accessing the wealth of online resources, and getting external help help.
 
 Cons:
 * Is this even React?
 * It results in two entirely separate development 'worlds'
 * No way to set it up with the conveniences React(+Redux) provides -- Hot Module Reloading, Time Travel Debugging.
-* Only way to handle state in D3-land is by manually importing the store.
+* Only way to handle state on the D3 side is by manually importing the Redux store.
 
 +++ 
 #### The D3 Purist 2.0
@@ -176,6 +165,9 @@ Cons:
 ```javascript
 export class CircleD3 extends Component {
   componentDidMount() {
+    /* This allows abstracting logic away into 
+       utility functions and 'pure D3 elements', 
+       emphasizing our declarative approach */
     const data = makeGrid(20, 20);
     const svg = makeSVG(100, 100);
     makeCircles(svg);
@@ -217,12 +209,29 @@ Pros:
 * We can put everything in our own components, making it easy to write modular code
 
 Cons:
-* Performance is **bad** at scale. Forcing everything inside of SVG into React Components pollutes the DOM and overloads React's reconciliation process. The above code with 50,000 circles starts to fall apart.
-* No clear, clean way to handle D3's `enter`/`exit`/`update`
-* The syntax is a massive deviation from d3
+* Performance degrades heavily at scale. Forcing everything inside of SVG into React Components pollutes the DOM and results in a major memory hog. Does it matter? Unclear.
+* No clear, clean way to handle D3's `enter`/`exit`/`update`*
+* The syntax is a massive deviation from D3, making it difficult to learn
 
 +++
 #### The React Way, Improved
 
+```javascript
+export class CircleReact extends Component {
+  render() {
+    /* <RangeGrid> is a HOC to abstract away the nested d3.range parts */
+    const RangeDot = RangeGrid(Dot);
+      
+    return (
+      /* SVG and G are both pure React Components that wrap the native HTML elements */
+      <SVG width={100} height={100}>
+        <G>
+          <RangeDot x={20} y={20} r={2} />
+        </G>
+      </SVG>
+    )
+  }
+}
+```
 ---
 
