@@ -35,11 +35,15 @@ DX is defined by _robust functionality_ that delivers _stability_, _usability_, 
 
 ### `D3`
 
-`D3` is: 
+D3 is: 
 
 * a *visualization* toolkit for creating _data-driven documents_
 * most often used for making charts, but is not explicitly a charting library
 * declarative, providing reliable wrappers for clunky SVG syntax and DOM methods.
+
+D3 emphasizes "efficient manipulation of documents based on data".
+
++++
 
 #### Raw HTML
 ```html
@@ -53,8 +57,6 @@ d3.svg.line()
   .y((d) => (d.y));
 ```
 
-`D3` emphasizes "efficient manipulation of documents based on data".
-
 ---
 
 ### `React`
@@ -64,4 +66,29 @@ d3.svg.line()
 More specifically, it is: 
 * a framework for creating modular and encapsulated components, composed together for complex UIs
 * declarative, with components held together by thin `render` loops and component lifecycle methods
-* fast, 
+
++++
+
+#### React
+```javascript
+const greet = (name) => {
+  return `Hello, ${name}!`
+}
+
+const Component = (
+  <h1>
+    {greet('friends')}
+  </h1>
+);
+
+ReactDOM.render(
+  Component,
+  document.getElementById('root')
+);
+```
+
+```html
+<h1>
+  Hello, friends!
+</h1>
+```
