@@ -9,31 +9,37 @@ DX is defined by _robust functionality_ that delivers _stability_, _usability_, 
 
 +++
 
-* Functionality
-  * The feature layer. "What does the thing do?". Functionality can be anywhere from a tiny helper function to an enormous framework. 
-  * ex: cross-platform console colors with `Chalk`, or a new approach to writing front-end code through `TypeScript`
+Functionality
+* The feature layer. "What does the thing do?". Functionality can be anywhere from a tiny helper function to an enormous framework. 
+* Ex: 
+  * Cross-platform console colors with `Chalk`
+  * A new approach to writing front-end code through `TypeScript`
 
 +++
 
-* Stability
-  * How reliable are the features? How often do unpredictable bugs surface?
-  * ex: `AWS EC2` with 99.99% uptime, or `Lodash` with 100% predictable functionality.
+Stability
+* How reliable are the features? How often do unpredictable bugs surface?
+* Ex: 
+  * AWS EC2's 99.99% uptime
+  * Lodash with 100% predictable functionality.
 
 +++
 
-* Usability
-  * Does it play nice with other tools? What is the performance impact of using it? How long does it take to set up?
-  * ex: Time to make a `TodoMVC` in `Angular` vs `React` vs `JQuery`, or the amount of time spent looking up documentation vs the amount of time spent developing.
+Usability
+* Does it play nice with other tools? What is the performance impact of using it? How long does it take to set up?
+* Ex: 
+  * Time to make a TodoMVC in Angular vs React vs JQuery, 
+  * The amount of time spent looking up documentation vs the amount of time spent developing.
  
 +++ 
  
-* Clarity
-  * Does it make sense? Do I understand why it exists, and can I explain it? Does it follow common conventions? What are the costs associated with using this tool?
-  * Ex: How difficult it is to describe `Redux` compared to `RxJS`, or the predictability of compiled `CoffeeScript` syntax 
+Clarity
+* Does it make sense? Do I understand why it exists, and can I explain it? Does it follow common conventions? What are the costs associated with using this tool?
+* Ex: 
+  * How difficult it is to describe `Redux` compared to `RxJS`
+  * The predictability of compiled `CoffeeScript` syntax 
 
 ---
-
-### `D3`
 
 D3 is: 
 
@@ -58,8 +64,6 @@ d3.svg.line()
 ```
 
 ---
-
-### `React`
 
 `React` is "a JavaScript library for building user interfaces", often referred to as the 'V' in MVC.
 
