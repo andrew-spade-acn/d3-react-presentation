@@ -1,5 +1,5 @@
-## D3 <> React
-### Optimizing for Developer Experience (DX) and Performance
+## `D3 <> React`
+#### Optimizing for Developer Experience (DX) and Performance
 
 ---
 
@@ -16,18 +16,52 @@ DX is defined by _robust functionality_ that delivers _stability_, _usability_, 
 +++
 
 * Stability
-  * How reliable are the features? 
+  * How reliable are the features? How often do unpredictable bugs surface?
   * ex: `AWS EC2` with 99.99% uptime, or `Lodash` with 100% predictable functionality.
 
 +++
 
 * Usability
-  * Does it play nice with other tools? What is the performance impact of using it? How long does it take to set up? How often do I feel like I'm fighting with the tool?
-  * ex: Time to write a `TodoMVC` in `Angular` vs `React` vs `Vue` vs `JQuery`, or the amount of time spent looking up documentation vs the amount of time spent developing (`webpack` has a notable reputation for failing here).
+  * Does it play nice with other tools? What is the performance impact of using it? How long does it take to set up?
+  * ex: Time to make a `TodoMVC` in `Angular` vs `React` vs `JQuery`, or the amount of time spent looking up documentation vs the amount of time spent developing.
  
 +++ 
  
 * Clarity
-  * Does it make intuitive sense? Do I understand why it exists, and can I explain it to somebody? Does it follow common conventions? What are the costs associated with using this tool?
-  * Ex: How difficult it is to describe `Redux` compared to `RxJS`, or the predictability of `TypeScript` syntax 
-  * Food for thought: does compiled code come with a cost to clarity?
+  * Does it make sense? Do I understand why it exists, and can I explain it? Does it follow common conventions? What are the costs associated with using this tool?
+  * Ex: How difficult it is to describe `Redux` compared to `RxJS`, or the predictability of compiled `CoffeeScript` syntax 
+
+---
+
+### `D3`
+
+`D3` is: 
+
+* a *visualization* toolkit for creating _data-driven documents_
+* most often used for making charts, but is not explicitly a charting library
+* declarative, providing reliable wrappers for clunky SVG syntax and DOM methods.
+
+#### Raw HTML
+```html
+  <line x1="0" y1="0" x2="200" y2="200"/>
+```
+
+#### D3
+```javascript
+d3.svg.line()
+  .x((d) => (d.x))
+  .y((d) => (d.y));
+```
+
+`D3` emphasizes "efficient manipulation of documents based on data".
+
+---
+
+### `React`
+
+`React` is "a JavaScript library for building user interfaces", often referred to as the 'V' in MVC.
+
+More specifically, it is: 
+* a framework for creating modular and encapsulated components, composed together for complex UIs
+* declarative, with components held together by thin `render` loops and component lifecycle methods
+* fast, 
