@@ -20,16 +20,16 @@ Functionality
 Stability
 * How reliable are the features? How often do unpredictable bugs surface?
 * Ex: 
-  * AWS EC2's 99.99% uptime
-  * Lodash with 100% predictable functionality.
+  * `AWS EC2`'s 99.99% uptime
+  * `Lodash` with 100% predictable functionality.
 
 +++
 
 Usability
 * Does it play nice with other tools? What is the performance impact of using it? How long does it take to set up?
 * Ex: 
-  * Time to make a TodoMVC in Angular vs React vs JQuery, 
-  * The amount of time spent looking up documentation vs the amount of time spent developing.
+  * Time to make a simple `TodoApp` in `Angular` vs `React` vs `JQuery`.
+  * The amount of time spent looking up documentation compared to the amount of time spent developing.
  
 +++ 
  
@@ -43,20 +43,19 @@ Clarity
 
 D3 is: 
 
-* a *visualization* toolkit for creating _data-driven documents_
-* most often used for making charts, but is not explicitly a charting library
-* declarative, providing reliable wrappers for clunky SVG syntax and DOM methods.
-
-D3 emphasizes "efficient manipulation of documents based on data".
+* A *visualization* toolkit for creating _data-driven documents_
+* Most often used for making charts, but is not explicitly a charting library
+* Declarative, providing reliable wrappers for clunky SVG syntax and DOM methods
+* "Efficient manipulation of documents based on data"
 
 +++
 
-#### Raw HTML
+Raw HTML
 ```html
   <line x1="0" y1="0" x2="200" y2="200"/>
 ```
 
-#### D3
+D3
 ```javascript
 d3.svg.line()
   .x((d) => (d.x))
@@ -69,11 +68,11 @@ d3.svg.line()
 
 More specifically, it is: 
 * a framework for creating modular and encapsulated components, composed together for complex UIs
-* declarative, with components held together by thin `render` loops and component lifecycle methods
+* declarative, with components supported by thin render loops and component lifecycle methods
+* fast, leveraging the Virtual DOM and a reconciliation engine to determine what components need to be updated
 
 +++
 
-#### React
 ```javascript
 const greet = (name) => {
   return `Hello, ${name}!`
@@ -95,4 +94,46 @@ ReactDOM.render(
 <h1>
   Hello, friends!
 </h1>
+```
+
+---
+
+What's the best way to combine them?
+
+1. The React way
+2. The D3 way
+3. DOM emulation
+
++++
+
+Let's test these, conceptually, with a minimal concept: a colored dot.
+
+```javascript
+export class Circle extends React.Component {
+  render() {
+  }
+}
+```
+---
+
+#### The React Way
+
+```javascript
+export class CircleReact extends Component {
+  render() {
+    return (
+      <svg width={100} height={100}>
+        <g>
+          {d3.range(20).map(x =>
+            d3.range(20).map(y =>
+              <circle cx={x} cy={y} r={2}
+                      ref="dot"
+                      style={{fill: getColor}} />
+            )
+          )}
+        </g>
+      </svg>
+    )
+  }
+}
 ```
