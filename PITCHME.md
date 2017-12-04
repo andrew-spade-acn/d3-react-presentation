@@ -73,6 +73,7 @@ More specifically, it is:
 
 +++
 
+In React: 
 ```javascript
 const greet = (name) => {
   return `Hello, ${name}!`
@@ -90,6 +91,7 @@ ReactDOM.render(
 );
 ```
 
+In HTML: 
 ```html
 <h1>
   Hello, friends!
@@ -135,5 +137,48 @@ export class CircleReact extends Component {
       </svg>
     )
   }
+}
+```
+
+---
+
+#### The D3 Way
+
+```javascript
+export class CircleD3 extends Component {
+
+  componentDidMount() {
+  
+    const data = _.flatten(
+      d3.range(20).map(x =>
+        d3.range(20).map(y =>
+          [x, y]
+        )
+      )
+    );
+  
+    const svg = d3.select('.renderedD3')
+      .append('svg')
+      .attr('width', 100)
+      .attr('height', 100)
+      .append('g');
+  
+    svg.selectAll('circle')
+      .data(data)
+      .enter()
+      .append('circle')
+      .attr('cx', (d) => (d.x))
+      .attr('cy', (d) => (d.y))
+      .attr('r', 2)
+      .attr('fill', () => ( getColor ))
+      
+  }
+  
+  render() {
+    return (
+      <div className='renderedD3' />
+    )
+  }
+
 }
 ```
