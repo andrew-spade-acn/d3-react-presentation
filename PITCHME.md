@@ -41,11 +41,11 @@ Clarity
 
 ---
 
-D3 is: 
+#### D3 
 
 * A *visualization* toolkit for creating _data-driven documents_
 * Most often used for making charts, but is not explicitly a charting library
-* Declarative, providing reliable wrappers for clunky SVG syntax and DOM methods
+* Declarative, providing reliable abstractions for clunky SVG syntax and DOM methods
 * "Efficient manipulation of documents based on data"
 
 +++
@@ -64,12 +64,11 @@ d3.svg.line()
 
 ---
 
-`React` is "a JavaScript library for building user interfaces", often referred to as the 'V' in MVC.
+#### React 
 
-More specifically, it is: 
-* a framework for creating modular and encapsulated components, composed together for complex UIs
-* declarative, with components supported by thin render loops and component lifecycle methods
-* fast, leveraging the Virtual DOM and a reconciliation engine to determine what components need to be updated
+* A framework for creating modular and encapsulated components, composed together for complex UIs
+* Declarative components supported by JSX and component lifecycle methods
+* Built for performance, leveraging the Virtual DOM and a reconciliation engine to keep render loops fast
 
 +++
 
@@ -102,8 +101,8 @@ In HTML:
 
 What's the best way to combine them?
 
-1. The React way
-2. The D3 way
+1. The D3 Purist
+2. The React 
 3. DOM emulation
 
 +++
@@ -117,32 +116,7 @@ export class Circle extends React.Component {
 }
 ```
 ---
-
-#### The React Way
-
-```javascript
-export class CircleReact extends Component {
-  render() {
-    return (
-      <svg width={100} height={100}>
-        <g>
-          {d3.range(20).map(x =>
-            d3.range(20).map(y =>
-              <circle cx={x} cy={y} r={2}
-                      ref="dot"
-                      style={{fill: getColor}} />
-            )
-          )}
-        </g>
-      </svg>
-    )
-  }
-}
-```
-
----
-
-#### The D3 Way
+#### The D3 Purist
 
 ```javascript
 export class CircleD3 extends Component {
@@ -182,3 +156,73 @@ export class CircleD3 extends Component {
 
 }
 ```
++++
+#### Consequences
+
+Pros:
+* It's super fast.
+* It's lightweight.
+* It allows writing normal, quintessential D3. This is great for onboarding new devs, accessing the wealth of online resources, and getting external help help.
+
+Cons:
+* Is this even React?
+* It results in two entirely separate development 'worlds'
+* No way to set it up with the conveniences React(+Redux) provides -- Hot Module Reloading, Time Travel Debugging.
+* Only way to handle state in D3-land is by manually importing the store.
+
++++ 
+#### The D3 Purist 2.0
+
+```javascript
+export class CircleD3 extends Component {
+  componentDidMount() {
+    const data = makeGrid(20, 20);
+    const svg = makeSVG(100, 100);
+    makeCircles(svg);
+  }
+  render() {
+    return (
+      <div className='renderedD3' />
+    )
+  }
+}
+```
+---
+#### The React Way
+
+```javascript
+export class CircleReact extends Component {
+  render() {
+    return (
+      <svg width={100} height={100}>
+        <g>
+          {d3.range(20).map(x =>
+            d3.range(20).map(y =>
+              <circle cx={x} cy={y} r={2}
+                      ref="dot"
+                      style={{fill: getColor}} />
+            )
+          )}
+        </g>
+      </svg>
+    )
+  }
+}
+```
++++
+#### Consequences?
+
+Pros:
+* This looks like React!
+* We can put everything in our own components, making it easy to write modular code
+
+Cons:
+* Performance is **bad** at scale. Forcing everything inside of SVG into React Components pollutes the DOM and overloads React's reconciliation process. The above code with 50,000 circles starts to fall apart.
+* No clear, clean way to handle D3's `enter`/`exit`/`update`
+* The syntax is a massive deviation from d3
+
++++
+#### The React Way, Improved
+
+---
+
