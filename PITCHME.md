@@ -29,7 +29,7 @@ An attempted definition:
 #### Usability
 * Does it play nice with the rest of my workflow? How hard is it to set up? Will I be locked in to anything?
   * Time to make a Todo App in **`Angular`** vs **`React`**.
-  * Time spent reading documentation vs developing. _cough, webpack..._
+  * Time spent reading documentation vs developing. _`*`cough`*`, webpack..._
  
 +++
 
