@@ -188,8 +188,8 @@ export class CircleD3 extends Component {
 +++
 
 Pros:
-* It's fast and simple
-* It allows writing normal D3 code
+* ###### It's fast and simple
+* ##### It allows writing normal D3 code
 
 Cons:
 * Is this even React?
