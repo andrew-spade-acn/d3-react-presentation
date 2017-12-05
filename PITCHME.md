@@ -178,13 +178,14 @@ export class CircleD3 extends Component {
 +++
 Pros:
 * It's fast and simple
-* It allows writing normal D3 code. This is great for working from examples or onboarding new devs
+* It allows writing normal D3 code
 
 Cons:
 * Is this even React?
 * It results in two separate development worlds
-* Not simple to set up with the tools React(+Redux) provides, like HMR + Time Travel Debugging
-* D3 side is by default detached from the Redux store, component props, and app router
+* Not simple to set up with Hot-Module Replacement (HMR) + Time Travel Debugging (TTD)
+* D3 is detached from the Redux store, component props, and app router
+* Clunky integration with lifecycle hooks
 ---
 #### The React Way
 ```jsx
@@ -263,12 +264,13 @@ export class CircleReact extends Component {
 +++
 Pros:
 * This looks like React!
-* We can put everything in our own components, leading to more modular code
+* Can break everything into its own components, leading to more modular code
+* HMR, TTD, and lifecycle hooks!
 
 Cons:
-* Performance degrades at scale. Results in 100+ (or even 1000+) elements per chart into nested React Components.
+* Performance degrades at scale. Can easily result in 100+ (or even 1000+) nested React Components per chart
 * No clear, clean way to handle D3's `enter`/`exit`/`update`
-* Syntax deviates from D3, causing frustration and awkward syntax (d3.axis gets rough)
+* Syntax deviates from D3, causing frustration and awkward syntax (d3.axis is extra rough)
 ---
 +++
 #### The DOM Emulator
