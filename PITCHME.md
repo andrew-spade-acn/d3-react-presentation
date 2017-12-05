@@ -186,6 +186,7 @@ export class CircleD3 extends Component {
 }
 ```
 +++
+
 Pros:
 * It's fast and simple
 * It allows writing normal D3 code
@@ -272,6 +273,7 @@ export class CircleReact extends Component {
 }
 ```
 +++
+
 Pros:
 * This looks like React!
 * Can break everything into its own components, leading to more modular code
@@ -323,6 +325,7 @@ export class CircleD3 extends Component {
 return withFauxDOM(DotChartTwo); // 3
 ```
 +++
+
 Pros:
 * We get to keep vanilla D3!
 * We get to keep HMR, TTD, component lifecycle hooks!
@@ -334,6 +337,7 @@ Cons:
 * Slight performance implication due to overhead of DOM emulation
 * Animations are functional, but timings need work
 ---
+
 Future Work:
 * Offload heavier processes to web workers to free up main thread
 * Fix animations
