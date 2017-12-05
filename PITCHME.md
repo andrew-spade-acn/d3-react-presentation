@@ -35,7 +35,7 @@ Clarity
 
 ### D3 
 
-* Visualization toolkit for creating data-driven docs
+* A library for creating data-driven visualizations
 * Often used for making charts, but not explicitly a charting library
 * Declarative abstractions for clunky SVG syntax + DOM methods
 
@@ -48,11 +48,6 @@ Raw HTML
 
 D3
 ```javascript
-d3.svg.line()
-  .x((d) => (d.x))
-  .y((d) => (d.y));
-```
-```jsx
 d3.svg.line()
   .x((d) => (d.x))
   .y((d) => (d.y));
@@ -93,7 +88,7 @@ In HTML:
 ---
 #### Why would we want to combine them?
 
-* D3 examples tend to be standalone apps (or sit in iframes/<script> tags), limiting its scope
+* D3 examples tend to be standalone apps (or sit in iframes/`<script>` tags), limiting its scope
 * Vanilla D3 struggles when handling multiple complex, interconnected visualizations
 * If combined elegantly, D3 and React become a stateless, declarative, component-driven, data viz toolkit!
 
