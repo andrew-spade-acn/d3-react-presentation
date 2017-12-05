@@ -15,8 +15,6 @@ Functionality
   * Cross-platform console colors with `Chalk`
   * A new approach to writing front-end code through `TypeScript`
 
-+++
-
 Stability
 * How reliable are the features? How often do unpredictable bugs surface?
 * Ex: 
@@ -31,8 +29,6 @@ Usability
   * Time to make a simple `TodoApp` in `Angular` vs `React` vs `JQuery`.
   * The amount of time spent looking up documentation compared to the amount of time spent developing.
  
-+++ 
- 
 Clarity
 * Does it make sense? Do I understand why it exists? Does it follow common conventions?
 * Ex: 
@@ -41,12 +37,11 @@ Clarity
 
 ---
 
-#### D3 
+### D3 
 
-* A visualization toolkit for creating _data-driven documents_
+* A visualization toolkit for creating data-driven documents
 * Most often used for making charts, but not explicitly a charting library
-* A declarative approach which provides reliable abstractions for clunky SVG syntax and DOM methods
-* "Efficient manipulation of documents based on data"
+* A declarative approach that provides reliable abstractions for clunky SVG syntax and DOM methods
 
 +++
 
@@ -64,11 +59,11 @@ d3.svg.line()
 
 ---
 
-#### React 
+### React 
 
-* A framework for creating modular and encapsulated components, composed together for complex UIs
-* Declarative, with components supported by JSX and component lifecycle methods
-* Built for performance, leveraging the Virtual DOM and a powerful reconciliation algorithm
+* A declarative framework for building components, composed together for complex UIs
+* Easy to learn, supported by JSX and component lifecycle methods
+* Built for performance, leveraging the virtual DOM and a powerful reconciliation algorithm
 
 +++
 In React: 
@@ -105,23 +100,17 @@ In HTML:
 
 ```javascript
 export class CircleD3 extends Component {
-
   componentDidMount() {
-    const data = fetchData();
-  
+    const data = fetchData();  
     const svg = d3.select('.renderedD3')
       .append('svg')
       .attr('width', 100)
       .attr('height', 100)
       .append('g');
-  }
-  
+  }  
   render() {
-    return (
-      <div className='renderedD3' />
-    )
+    return (<div className='renderedD3' />)
   }
-
 }
 ```
 +++
@@ -129,13 +118,9 @@ export class CircleD3 extends Component {
 
 ```javascript
 export class CircleD3 extends Component {
-
-  componentDidMount() {
-  
-    const data = fetchData();
-  
-    const svg = makeSVG('renderedD3', 100, 100);
-  
+  componentDidMount() {  
+    const data = fetchData();  
+    const svg = makeSVG('renderedD3', 100, 100);  
     svg.selectAll('circle')
       .data(data)
       .enter()
@@ -143,16 +128,11 @@ export class CircleD3 extends Component {
       .attr('cx', (d) => (d.x))
       .attr('cy', (d) => (d.y))
       .attr('r', 2)
-      .attr('fill', () => ( getColor ))
-      
+      .attr('fill', () => ( getColor ))   
   }
-  
   render() {
-    return (
-      <div className='renderedD3' />
-    )
+    return (<div className='renderedD3' />)
   }
-
 }
 ```
 +++ 
@@ -160,22 +140,15 @@ export class CircleD3 extends Component {
 
 ```javascript
 export class CircleD3 extends Component {
-
   componentDidMount() {
-
     // We can hook this up to Redux/Promises/RxJS/etc
     const data = fetchData();
-    
     // We can have these props passed in externally
-    const svg = makeSVG('renderedD3', 100, 100);
-    
+    const svg = makeSVG('renderedD3', 100, 100); 
     makeCircles(svg);
   }
-  
   render() {
-    return (
-      <div className='renderedD3' />
-    )
+    return (<div className='renderedD3' />)
   }
 }
 ```
@@ -257,7 +230,7 @@ export class CircleReact extends Component {
   render() {
     /* RangeGrid is a HOC to abstract away the nested d3.range parts */
     const RangeDot = RangeGrid(Dot);
-      
+     
     return (
       <SVG width={100} height={100}>
         <Group>
