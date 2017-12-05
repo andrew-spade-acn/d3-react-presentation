@@ -102,6 +102,18 @@ In HTML:
 export class CircleD3 extends Component {
   componentDidMount() {
     const data = fetchData();  
+  }  
+  render() {
+    return (<div className='renderedD3' />)
+  }
+}
+```
++++
+#### The D3 Purist
+```jsx
+export class CircleD3 extends Component {
+  componentDidMount() {
+    const data = fetchData();  
     const svg = d3.select('.renderedD3')
       .append('svg')
       .attr('width', 100)
@@ -114,6 +126,19 @@ export class CircleD3 extends Component {
 }
 ```
 +++
+#### The D3 Purist
+```jsx
+export class CircleD3 extends Component {
+  componentDidMount() {  
+    const data = fetchData();  
+    const svg = makeSVG('renderedD3', 100, 100);   
+  }
+  render() {
+    return (<div className='renderedD3' />)
+  }
+}
+```
++++ 
 #### The D3 Purist
 ```jsx
 export class CircleD3 extends Component {
@@ -157,7 +182,7 @@ Pros:
 
 Cons:
 * Is this even React?
-* It results in two separate development 'worlds'
+* It results in two separate development worlds
 * Not simple to set up with the tools React(+Redux) provides, like HMR + Time Travel Debugging
 * D3 side is by default detached from the Redux store, component props, and app router
 ---
@@ -285,7 +310,16 @@ return withFauxDOM(DotChartTwo);
 Pros:
 * We get to keep vanilla D3!
 * We get to keep HMR, component lifecycle hooks, time-travel debugging, etc
+* Stress testing 100k circles, this rendered 5x faster than approach #2
+  * Further, the heavy lifting happens outside of `render`, meaning the app is not blocked
 
 Cons:
 * Slight performance implication due to overhead of DOM emulation
 * Animations are functional, but timings need work
+---
+Future Work:
+* Offload heavier processes to web workers to free up main thread
+* Fix animations
+* Identify consistent pattern (through lifecycle hooks) for `enter`/`exit`/`update`
+---
+#### Any questions?
