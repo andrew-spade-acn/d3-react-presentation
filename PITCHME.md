@@ -5,45 +5,46 @@
 
 ### What is DX?
 
-DX is about what developers _think_ and _feel_ about their project environments.
+DX is about what developers _think_ and _feel_ about their coding environments.
 
-An attempted definition: a tool that provides some _functionality_ that emphasizes _stability_, _usability_, and _clarity_
+An attempted definition: 
+> A metric for a tool that provides some __functionality__, emphasizing __stability__, __usability__, and __clarity__
 
 +++
 
 #### Functionality
-* What does it do? Does it do that thing well?
-  * Tiny: Cross-platform console colors with `Chalk`
-  * Big: A new approach to writing JS with `TypeScript`
+* What does it **do**? Does it do that thing **well**?
+  * Tiny: Cross-platform console colors with **`Chalk`**
+  * Big: A new approach to writing JS with **`TypeScript`**
 
 +++
 
 #### Stability
 * How **reliable** are the features? How often do **unpredictable** issues surface?
-  * `AWS EC2`'s 99.99% uptime
-  * `Lodash` test coverage => 5382.3 hits per line
+  * **`AWS EC2`**'s 99.99% uptime
+  * **`Lodash`** test coverage => 5382.3 hits per line
 
 +++
 
 #### Usability
 * Does it play nice with the rest of my workflow? How hard is it to set up? Will I be locked in to anything?
-  * Time to make a Todo App in `Angular` vs `React`.
-  * Time spent reading documentation vs developing.
+  * Time to make a Todo App in **`Angular`** vs **`React`**.
+  * Time spent reading documentation vs developing. _cough, webpack..._
  
 +++
 
 #### Clarity
 * Does it make sense? Do I understand why it exists? Does it follow common conventions?
-  * Difficulty of learning `Redux` vs `RxJS`
-  * Predictability of transpiled `CoffeeScript` vs `TypeScript`
+  * Difficulty of learning **`Redux`** vs **`RxJS`**
+  * Predictability of transpiled **`CoffeeScript`** vs **`TypeScript`**
 
 ---
 
 ### D3 
 
-* A library for creating data-driven visualizations
+* A library for creating **data-driven visualizations**
 * Often used for making charts, but not explicitly a charting library
-* Declarative abstractions for clunky SVG syntax + DOM methods
+* **Declarative abstractions** for clunky SVG syntax + DOM methods
 
 +++
 
@@ -64,9 +65,9 @@ d3.svg.line()
 ### React 
 
 * A declarative framework for building components, composed together for complex UIs
-* Easy to learn, supported by JSX and component lifecycle methods
-* Super fast, leveraging the virtual DOM and a powerful reconciliation algorithm
-t
+* Easy to learn, supported by **JSX** and **component lifecycle** methods
+* Super fast, leveraging the **virtual DOM** and a powerful **reconciliation** algorithm
+
 +++
 #### React: 
 ```jsx
@@ -103,8 +104,8 @@ ReactDOM.render(
 
 * React and D3 want to render their own DOM elements
 * D3 is stateful and relies on DOM mutation
-* React's best assets require being inside of React (like reconciliation, lifecycle hooks, etc)
-  * Same(ish) for some great developer utilities (Hot Module Replacement, Hot Reloading, Time Travel Debugging)
+* React's best assets require handling rendering inside components (like reconciliation, lifecycle hooks, etc)
+  * Similarly, many great developer utilities work best inside React (Hot Module Replacement, Hot Reloading, Time Travel Debugging)
 
 ---
 #### How can we combine them?
