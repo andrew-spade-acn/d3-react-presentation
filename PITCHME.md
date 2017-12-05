@@ -9,24 +9,28 @@ DX is defined by _robust functionality_ that delivers _stability_, _usability_, 
 
 +++
 
-Functionality
+#### Functionality
 * What does the thing do?
   * Cross-platform console colors with `Chalk`
   * A new approach to writing JS with `TypeScript`
 
-Stability
++++
+
+#### Stability
 * How reliable are the features? How often do unpredictable bugs surface?
   * `AWS EC2`'s 99.99% uptime
   * `Lodash` test coverage => 5382.3 hits per line
 
 +++
 
-Usability
+#### Usability
 * Does it play nice with other tools? How long does it take to set up?
   * Time to make a Todo App in `Angular` vs `React`.
   * Time spent reading documentation vs developing.
  
-Clarity
++++
+
+#### Clarity
 * Does it make sense? Do I understand why it exists? Does it follow conventions?
   * Difficulty of learning `Redux` vs `RxJS`
   * Predictability of compiled `CoffeeScript`
