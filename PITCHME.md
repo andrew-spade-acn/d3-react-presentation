@@ -12,12 +12,12 @@ DX is defined by _robust functionality_ that delivers _stability_, _usability_, 
 Functionality
 * What does the thing do?
   * Cross-platform console colors with `Chalk`
-  * A new approach to writing front-end code through `TypeScript`
+  * A new approach to writing JS with `TypeScript`
 
 Stability
 * How reliable are the features? How often do unpredictable bugs surface?
   * `AWS EC2`'s 99.99% uptime
-  * `Lodash` test coverage averaging 5382.3 hits per line
+  * `Lodash` test coverage => 5382.3 hits per line
 
 +++
 
@@ -29,14 +29,14 @@ Usability
 Clarity
 * Does it make sense? Do I understand why it exists? Does it follow conventions?
   * Difficulty of learning `Redux` vs `RxJS`
-  * Predictability of compiled `CoffeeScript` :scream_cat:
+  * Predictability of compiled `CoffeeScript`
 
 ---
 
 ### D3 
 
-* A visualization toolkit for creating data-driven documents
-* Most often used for making charts, but not explicitly a charting library
+* Visualization toolkit for creating data-driven docs
+* Often used for making charts, but not explicitly a charting library
 * Declarative abstractions for clunky SVG syntax + DOM methods
 
 +++
@@ -52,6 +52,11 @@ d3.svg.line()
   .x((d) => (d.x))
   .y((d) => (d.y));
 ```
+```jsx
+d3.svg.line()
+  .x((d) => (d.x))
+  .y((d) => (d.y));
+```
 
 ---
 
@@ -63,7 +68,7 @@ d3.svg.line()
 
 +++
 In React: 
-```javascript
+```jsx
 const greet = (name) => {
   return `Hello, ${name}!`
 }
@@ -94,7 +99,7 @@ In HTML:
 ---
 #### The D3 Purist
 
-```javascript
+```jsx
 export class CircleD3 extends Component {
   componentDidMount() {
     const data = fetchData();  
@@ -112,7 +117,7 @@ export class CircleD3 extends Component {
 +++
 #### The D3 Purist
 
-```javascript
+```jsx
 export class CircleD3 extends Component {
   componentDidMount() {  
     const data = fetchData();  
@@ -134,7 +139,7 @@ export class CircleD3 extends Component {
 +++ 
 #### The D3 Purist
 
-```javascript
+```jsx
 export class CircleD3 extends Component {
   componentDidMount() {
     // We can hook this up to Redux/Promises/RxJS/etc
@@ -161,7 +166,7 @@ Cons:
 ---
 #### The React Way
 
-```javascript
+```jsx
 export class CircleReact extends Component {
   render() {
     return (
@@ -176,7 +181,7 @@ export class CircleReact extends Component {
 +++
 #### The React Way
 
-```javascript
+```jsx
 export class CircleReact extends Component {
   render() {
     return (
@@ -198,7 +203,7 @@ export class CircleReact extends Component {
 +++
 #### The React Way
 
-```javascript
+```jsx
 export class CircleReact extends Component {
   render() {
     return (
@@ -221,7 +226,7 @@ export class CircleReact extends Component {
 +++
 #### The React Way
 
-```javascript
+```jsx
 export class CircleReact extends Component {
   render() {
     /* RangeGrid is a HOC to abstract away the nested d3.range parts */
