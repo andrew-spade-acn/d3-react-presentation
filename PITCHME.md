@@ -47,12 +47,12 @@ An attempted definition: a tool that provides some _functionality_ that emphasiz
 
 +++
 
-Raw HTML
+#### Raw HTML
 ```html
   <line x1="0" y1="0" x2="200" y2="200"/>
 ```
 
-D3
+#### D3
 ```javascript
 d3.svg.line()
   .x((d) => (d.x))
@@ -65,10 +65,10 @@ d3.svg.line()
 
 * A declarative framework for building components, composed together for complex UIs
 * Easy to learn, supported by JSX and component lifecycle methods
-* Super fast, via the virtual DOM and a powerful reconciliation algorithm
-
+* Super fast, leveraging the virtual DOM and a powerful reconciliation algorithm
+t
 +++
-In React: 
+#### React: 
 ```jsx
 const greet = (name) => {
   return `Hello, ${name}!`
@@ -85,7 +85,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
-In HTML: 
+#### HTML: 
 ```html
 <h1>
   Hello, friends!
@@ -110,7 +110,7 @@ In HTML:
 #### How can we combine them?
 
 1. The D3 Purist
-2. The React Holdout
+2. The React Runaround
 3. The DOM Emulator
 ---
 #### The D3 Purist
@@ -204,7 +204,7 @@ Cons:
 * D3 parts are detached from the Redux store, component props, and app router
 * Clunky integration with lifecycle hooks
 ---
-#### The React Way
+#### The React Runaround
 ```jsx
 export class CircleReact extends Component {
   render() {
@@ -218,7 +218,7 @@ export class CircleReact extends Component {
 }
 ```
 +++
-#### The React Way
+#### The React Runaround
 ```jsx
 export class CircleReact extends Component {
   render() {
@@ -239,7 +239,7 @@ export class CircleReact extends Component {
 }
 ```
 +++
-#### The React Way
+#### The React Runaround
 ```jsx
 export class CircleReact extends Component {
   render() {
@@ -261,7 +261,7 @@ export class CircleReact extends Component {
 }
 ```
 +++
-#### The React Way
+#### The React Runaround
 ```jsx
 export class CircleReact extends Component {
   render() {
@@ -288,7 +288,7 @@ Pros:
 Cons:
 * Performance degrades at scale. Can result in 100+ (or even 1000+) nested components _per chart_
 * No clear, clean way to handle D3's `enter`/`exit`/`update`
-* Syntax deviates from D3, causing frustration and awkward syntax
+* Syntax deviates from D3, causing extra work and awkward syntax
 ---
 #### The DOM Emulator
 
