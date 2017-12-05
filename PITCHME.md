@@ -95,17 +95,17 @@ ReactDOM.render(
 ---
 #### Why would we want to combine them?
 
-* D3 examples tend to be standalone apps (or sit in iframes/`<script>` tags), limiting its scope
+* D3 examples tend to be standalone apps (or stuck in `<script>` tags), limiting its scope
 * Vanilla D3 struggles when handling multiple complex, interconnected visualizations
-* If combined elegantly, D3 and React become a stateless, declarative, component-driven, data viz toolkit!
+* If combined elegantly, D3 and React becomes a stateless, declarative, component-driven, data viz toolkit!
 
 ---
 #### What's the problem?
 
-* React and D3 want to render their own DOM elements
+* React and D3 each want to render their own DOM elements
 * D3 is stateful and relies on DOM mutation
-* React's best assets require handling rendering inside components (like reconciliation, lifecycle hooks, etc)
-  * Similarly, many great developer utilities work best inside React (Hot Module Replacement, Hot Reloading, Time Travel Debugging)
+* React's best assets require handling rendering inside components
+* Similarly, many great developer utilities work best inside React, like Hot Module Replacement, Hot Reloading, Time Travel Debugging
 
 ---
 #### How can we combine them?
@@ -338,7 +338,7 @@ Pros:
 * We get to keep HMR, TTD, component lifecycle hooks!
   * We can even have stateless componenets
 * Stress testing 100k circles, this rendered 5x faster than approach #2
-  * Further, the heavy lifting happens outside of `render`, meaning the app is not blocked
+  * Further, the heavy lifting happens outside of `render`, meaning the rest of the app is not blocked
 
 +++ 
 
