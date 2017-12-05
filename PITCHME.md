@@ -5,35 +5,37 @@
 
 ### What is DX?
 
-DX is defined by _robust functionality_ that delivers _stability_, _usability_, and _clarity_
+DX is about what developers _think_ and _feel_ about their project environments.
+
+An attempted definition: a tool that provides some _functionality_ that emphasizes _stability_, _usability_, and _clarity_
 
 +++
 
 #### Functionality
-* What does the thing do?
-  * Cross-platform console colors with `Chalk`
-  * A new approach to writing JS with `TypeScript`
+* What does it do? Does it do that thing well?
+  * Tiny: Cross-platform console colors with `Chalk`
+  * Big: A new approach to writing JS with `TypeScript`
 
 +++
 
 #### Stability
-* How reliable are the features? How often do unpredictable bugs surface?
+* How **reliable** are the features? How often do **unpredictable** issues surface?
   * `AWS EC2`'s 99.99% uptime
   * `Lodash` test coverage => 5382.3 hits per line
 
 +++
 
 #### Usability
-* Does it play nice with other tools? How long does it take to set up?
+* Does it play nice with the rest of my workflow? How hard is it to set up? Will I be locked in to anything?
   * Time to make a Todo App in `Angular` vs `React`.
   * Time spent reading documentation vs developing.
  
 +++
 
 #### Clarity
-* Does it make sense? Do I understand why it exists? Does it follow conventions?
+* Does it make sense? Do I understand why it exists? Does it follow common conventions?
   * Difficulty of learning `Redux` vs `RxJS`
-  * Predictability of compiled `CoffeeScript`
+  * Predictability of transpiled `CoffeeScript` vs `TypeScript`
 
 ---
 
@@ -196,10 +198,10 @@ Pros:
 * It allows writing normal D3 code, making it easy to code from example
 
 Cons:
-* Is this even React?
+* Where's the React?
 * It results in two separate development worlds
 * Not simple to set up HMR / TTD
-* D3 is detached from the Redux store, component props, and app router
+* D3 parts are detached from the Redux store, component props, and app router
 * Clunky integration with lifecycle hooks
 ---
 #### The React Way
