@@ -91,7 +91,22 @@ In HTML:
 </h1>
 ```
 ---
-#### What's the best way to combine them?
+#### Why would we want to combine them?
+
+* D3 examples tend to be standalone apps (or sit in iframes/<script> tags), limiting its scope
+* Vanilla D3 struggles when handling multiple complex, interconnected visualizations
+* If combined elegantly, D3 and React become a stateless, declarative, component-driven, data viz toolkit!
+
+---
+#### What's the problem?
+
+* React and D3 want to render their own DOM elements
+* D3 is stateful and relies on DOM mutation
+* React's best assets require being inside of React (like reconciliation, lifecycle hooks, etc)
+  * Same(ish) for some great developer utilities (Hot Module Replacement, Hot Reloading, Time Travel Debugging)
+
+---
+#### How can we combine them?
 
 1. The D3 Purist
 2. The React Holdout
@@ -272,6 +287,10 @@ Cons:
 * No clear, clean way to handle D3's `enter`/`exit`/`update`
 * Syntax deviates from D3, causing frustration and awkward syntax (d3.axis is extra rough)
 ---
+#### The DOM Emulator
+
+What if we could trick D3 into thinking it's rendering DOM elements?
+
 +++
 #### The DOM Emulator
 
@@ -293,7 +312,7 @@ export class CircleD3 extends Component {
 ```jsx
 export class CircleD3 extends Component {
   componentDidMount() {
-    const faux = this.props.connectFauxDOM('div', 'chart');
+    const faux = this.props.connectFauxDOM('div', 'chart'); // 1
     const data = fetchData();
     const svg = makeSVG(faux, 100, 100); 
     makeCircles(svg);
@@ -301,17 +320,18 @@ export class CircleD3 extends Component {
   render() {
     return (
       <div className='renderedD3'>
-        {this.props.chart}
+        {this.props.chart} // 2
       </div>
     )
   }
 }
-return withFauxDOM(DotChartTwo);
+return withFauxDOM(DotChartTwo); // 3
 ```
 +++
 Pros:
 * We get to keep vanilla D3!
-* We get to keep HMR, component lifecycle hooks, time-travel debugging, etc
+* We get to keep HMR, TTD, component lifecycle hooks!
+  * We can even have stateless componenets
 * Stress testing 100k circles, this rendered 5x faster than approach #2
   * Further, the heavy lifting happens outside of `render`, meaning the app is not blocked
 
@@ -322,6 +342,6 @@ Cons:
 Future Work:
 * Offload heavier processes to web workers to free up main thread
 * Fix animations
-* Identify consistent pattern (through lifecycle hooks) for `enter`/`exit`/`update`
+* Identify a consistent, scalable pattern for `enter`/`exit`/`update`
 ---
 #### Any questions?
