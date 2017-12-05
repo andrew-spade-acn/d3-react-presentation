@@ -98,7 +98,6 @@ In HTML:
 3. The DOM Emulator
 ---
 #### The D3 Purist
-
 ```jsx
 export class CircleD3 extends Component {
   componentDidMount() {
@@ -116,7 +115,6 @@ export class CircleD3 extends Component {
 ```
 +++
 #### The D3 Purist
-
 ```jsx
 export class CircleD3 extends Component {
   componentDidMount() {  
@@ -138,7 +136,6 @@ export class CircleD3 extends Component {
 ```
 +++ 
 #### The D3 Purist
-
 ```jsx
 export class CircleD3 extends Component {
   componentDidMount() {
@@ -161,11 +158,10 @@ Pros:
 Cons:
 * Is this even React?
 * It results in two separate development 'worlds'
-* No simple way to set it up with the conveniences React(+Redux) provides -- Hot Module Reloading, Time Travel Debugging.
-* D3 side is by default detached from the Redux store (concerning), component props (concerning), and router (probably fine)
+* Not simple to set up with the tools React(+Redux) provides, like HMR + Time Travel Debugging
+* D3 side is by default detached from the Redux store, component props, and app router
 ---
 #### The React Way
-
 ```jsx
 export class CircleReact extends Component {
   render() {
@@ -180,7 +176,6 @@ export class CircleReact extends Component {
 ```
 +++
 #### The React Way
-
 ```jsx
 export class CircleReact extends Component {
   render() {
@@ -202,12 +197,11 @@ export class CircleReact extends Component {
 ```
 +++
 #### The React Way
-
 ```jsx
 export class CircleReact extends Component {
   render() {
     return (
-      /* Let's add some pure React Components to wrap svg, circle, and g */
+      /* Pure React Components to wrap svg, circle, and g */
       <SVG width={100} height={100}>
         <G>
           {d3.range(20).map(x =>
@@ -225,7 +219,6 @@ export class CircleReact extends Component {
 ```
 +++
 #### The React Way
-
 ```jsx
 export class CircleReact extends Component {
   render() {
@@ -242,13 +235,57 @@ export class CircleReact extends Component {
   }
 }
 ```
++++
 Pros:
 * This looks like React!
 * We can put everything in our own components, leading to more modular code
 
 Cons:
-* Performance degrades at scale. Forcing 100+ (or even 1000+) elements per individual chart into nested React Components pollutes the DOM and demands tons of system resourses.
-* No clear, clean way to handle D3's `enter`/`exit`/`update`*
-* The syntax is a large deviation from D3, causing frequent frustrating and leading to awkward syntax (d3.axis gets particularly rough)
+* Performance degrades at scale. Results in 100+ (or even 1000+) elements per chart into nested React Components.
+* No clear, clean way to handle D3's `enter`/`exit`/`update`
+* Syntax deviates from D3, causing frustration and awkward syntax (d3.axis gets rough)
 ---
++++
+#### The DOM Emulator
 
+We'll the first example:
+```jsx
+export class CircleD3 extends Component {
+  componentDidMount() {
+    const data = fetchData();
+    const svg = makeSVG('renderedD3', 100, 100); 
+    makeCircles(svg);
+  }
+  render() {
+    return (<div className='renderedD3' />)
+  }
+}
+```
++++
+#### The DOM Emulator
+```jsx
+export class CircleD3 extends Component {
+  componentDidMount() {
+    const faux = this.props.connectFauxDOM('div', 'chart');
+    const data = fetchData();
+    const svg = makeSVG(faux, 100, 100); 
+    makeCircles(svg);
+  }
+  render() {
+    return (
+      <div className='renderedD3'>
+        {this.props.chart}
+      </div>
+    )
+  }
+}
+return withFauxDOM(DotChartTwo);
+```
++++
+Pros:
+* We get to keep vanilla D3!
+* We get to keep HMR, component lifecycle hooks, time-travel debugging, etc
+
+Cons:
+* Slight performance implication due to overhead of DOM emulation
+* Animations are functional, but timings need work
