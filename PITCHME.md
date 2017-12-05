@@ -11,29 +11,25 @@ DX is defined by _robust functionality_ that delivers _stability_, _usability_, 
 
 Functionality
 * What does the thing do?
-* Ex: 
   * Cross-platform console colors with `Chalk`
   * A new approach to writing front-end code through `TypeScript`
 
 Stability
 * How reliable are the features? How often do unpredictable bugs surface?
-* Ex: 
   * `AWS EC2`'s 99.99% uptime
-  * `Lodash` with simple functions and exhaustive testing
+  * `Lodash` test coverage averaging 5382.3 hits per line
 
 +++
 
 Usability
 * Does it play nice with other tools? How long does it take to set up?
-* Ex: 
-  * Time to make a simple `TodoApp` in `Angular` vs `React` vs `JQuery`.
-  * The amount of time spent looking up documentation compared to the amount of time spent developing.
+  * Time to make a Todo App in `Angular` vs `React`.
+  * Time spent reading documentation vs developing.
  
 Clarity
-* Does it make sense? Do I understand why it exists? Does it follow common conventions?
-* Ex: 
-  * The difficulty of learning `Redux` vs `RxJS`
-  * The predictability of compiled `CoffeeScript` :scream_cat:
+* Does it make sense? Do I understand why it exists? Does it follow conventions?
+  * Difficulty of learning `Redux` vs `RxJS`
+  * Predictability of compiled `CoffeeScript` :scream_cat:
 
 ---
 
@@ -41,7 +37,7 @@ Clarity
 
 * A visualization toolkit for creating data-driven documents
 * Most often used for making charts, but not explicitly a charting library
-* A declarative approach that provides reliable abstractions for clunky SVG syntax and DOM methods
+* Declarative abstractions for clunky SVG syntax + DOM methods
 
 +++
 
@@ -63,7 +59,7 @@ d3.svg.line()
 
 * A declarative framework for building components, composed together for complex UIs
 * Easy to learn, supported by JSX and component lifecycle methods
-* Built for performance, leveraging the virtual DOM and a powerful reconciliation algorithm
+* Super fast, via the virtual DOM and a powerful reconciliation algorithm
 
 +++
 In React: 
