@@ -188,13 +188,13 @@ export class CircleD3 extends Component {
 +++
 
 Pros:
-* ###### It's fast and simple
-* ##### It allows writing normal D3 code
+* It's fast and simple
+* It allows writing normal D3 code, making it easy to code from example
 
 Cons:
 * Is this even React?
 * It results in two separate development worlds
-* Not simple to set up with Hot-Module Replacement (HMR) + Time Travel Debugging (TTD)
+* Not simple to set up HMR / TTD
 * D3 is detached from the Redux store, component props, and app router
 * Clunky integration with lifecycle hooks
 ---
@@ -280,9 +280,9 @@ Pros:
 * HMR, TTD, and lifecycle hooks!
 
 Cons:
-* Performance degrades at scale. Can easily result in 100+ (or even 1000+) nested React Components per chart
+* Performance degrades at scale. Can result in 100+ (or even 1000+) nested components _per chart_
 * No clear, clean way to handle D3's `enter`/`exit`/`update`
-* Syntax deviates from D3, causing frustration and awkward syntax (d3.axis is extra rough)
+* Syntax deviates from D3, causing frustration and awkward syntax
 ---
 #### The DOM Emulator
 
@@ -332,6 +332,8 @@ Pros:
   * We can even have stateless componenets
 * Stress testing 100k circles, this rendered 5x faster than approach #2
   * Further, the heavy lifting happens outside of `render`, meaning the app is not blocked
+
++++ 
 
 Cons:
 * Slight performance implication due to overhead of DOM emulation
