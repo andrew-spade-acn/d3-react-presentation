@@ -45,6 +45,7 @@ An attempted definition:
 * A library for creating **data-driven visualizations**
 * Often used for making charts, but not explicitly a charting library
 * **Declarative abstractions** for clunky SVG syntax + DOM methods
+* Mediocre DX
 
 +++
 
@@ -56,8 +57,8 @@ An attempted definition:
 #### D3
 ```javascript
 d3.svg.line()
-  .x((d) => (d.x))
-  .y((d) => (d.y));
+  .x( (d) => (d.x) )
+  .y( (d) => (d.y) );
 ```
 
 ---
@@ -67,30 +68,31 @@ d3.svg.line()
 * A declarative framework for building components, composed together for complex UIs
 * Easy to learn, supported by **JSX** and **component lifecycle** methods
 * Super fast, leveraging the **virtual DOM** and a powerful **reconciliation** algorithm
+* High quality DX
 
 +++
 #### React: 
 ```jsx
+const MyDiv = styled.div`
+  font-size: 16px;
+  color: blue;
+`;
+
 const greet = (name) => {
   return `Hello, ${name}!`
-}
+};
 
-const Component = (
-  <h1>
-    {greet('friends')}
-  </h1>
-);
-
-ReactDOM.render(
-  Component,
-  document.getElementById('root')
+export default Component = () => (
+  <MyDiv>
+    { greet('friends') }
+  </MyDiv>
 );
 ```
 #### HTML: 
 ```html
-<h1>
+<div style='font-size:16px;color:blue;'>
   Hello, friends!
-</h1>
+</div>
 ```
 ---
 #### Why would we want to combine them?
@@ -118,10 +120,11 @@ ReactDOM.render(
 ```jsx
 export class CircleD3 extends Component {
   componentDidMount() {
+    // We can hook this up to Redux/Promises/RxJS/etc
     const data = fetchData();  
   }  
   render() {
-    return (<div className='renderedD3' />)
+    return ( <div className='renderedD3' /> );
   }
 }
 ```
@@ -138,7 +141,7 @@ export class CircleD3 extends Component {
       .append('g');
   }  
   render() {
-    return (<div className='renderedD3' />)
+    return ( <div className='renderedD3' /> );
   }
 }
 ```
@@ -148,10 +151,11 @@ export class CircleD3 extends Component {
 export class CircleD3 extends Component {
   componentDidMount() {  
     const data = fetchData();  
+    // We can have these props passed in externally
     const svg = makeSVG('renderedD3', 100, 100);   
   }
   render() {
-    return (<div className='renderedD3' />)
+    return ( <div className='renderedD3' /> );
   }
 }
 ```
@@ -172,7 +176,7 @@ export class CircleD3 extends Component {
       .attr('fill', () => ( getColor ))   
   }
   render() {
-    return (<div className='renderedD3' />)
+    return ( <div className='renderedD3' /> );
   }
 }
 ```
@@ -181,14 +185,12 @@ export class CircleD3 extends Component {
 ```jsx
 export class CircleD3 extends Component {
   componentDidMount() {
-    // We can hook this up to Redux/Promises/RxJS/etc
     const data = fetchData();
-    // We can have these props passed in externally
     const svg = makeSVG('renderedD3', 100, 100); 
-    makeCircles(svg);
+    makeCircles(svg, data);
   }
   render() {
-    return (<div className='renderedD3' />)
+    return ( <div className='renderedD3' /> );
   }
 }
 ```
@@ -266,13 +268,13 @@ export class CircleReact extends Component {
 ```jsx
 export class CircleReact extends Component {
   render() {
-    /* RangeGrid is a HOC to abstract away the nested d3.range parts */
-    const RangeDot = RangeGrid(Dot);
+    /* MakeGrid is a HOC to abstract away the nested d3.range parts */
+    const CircleGrid = MakeGrid(Dot);
      
     return (
       <SVG width={100} height={100}>
         <Group>
-          <RangeDot x={20} y={20} r={2} />
+          <CircleGrid x={20} y={20} r={2} />
         </Group>
       </SVG>
     )
@@ -283,7 +285,8 @@ export class CircleReact extends Component {
 
 Pros:
 * This looks like React!
-* Can break everything into its own components, leading to more modular code
+* HOCs are a great pattern for enhancing components
+* Can break everything into smaller components, leading to modular, reusable code
 * HMR, TTD, and lifecycle hooks!
 
 Cons:
@@ -298,13 +301,13 @@ What if we could trick D3 into thinking it's rendering DOM elements?
 +++
 #### The DOM Emulator
 
-We'll the first example:
+We'll take the first example:
 ```jsx
 export class CircleD3 extends Component {
   componentDidMount() {
     const data = fetchData();
     const svg = makeSVG('renderedD3', 100, 100); 
-    makeCircles(svg);
+    makeCircles(svg, data);
   }
   render() {
     return (<div className='renderedD3' />)
@@ -319,7 +322,7 @@ export class CircleD3 extends Component {
     const faux = this.props.connectFauxDOM('div', 'chart'); // 1
     const data = fetchData();
     const svg = makeSVG(faux, 100, 100); 
-    makeCircles(svg);
+    makeCircles(svg, data);
   }
   render() {
     return (
@@ -335,9 +338,10 @@ return withFauxDOM(DotChartTwo); // 3
 
 Pros:
 * We get to keep vanilla D3!
+* We're rendering in React!
 * We get to keep HMR, TTD, component lifecycle hooks!
   * We can even have stateless componenets
-* Stress testing 100k circles, this rendered 5x faster than approach #2
+* Stress testing 100k circles, this renders 5x faster than approach #2
   * Further, the heavy lifting happens outside of `render`, meaning the rest of the app is not blocked
 
 +++ 
@@ -346,10 +350,22 @@ Cons:
 * Slight performance implication due to overhead of DOM emulation
 * Animations are functional, but timings need work
 ---
+#### Show performance stats
+---
+#### What's the best approach?
 
-Future Work:
+A hybrid solution:
+1. For demanding animations or extremely complex visualizations: **D3 in Canvas**
+  * 1000+ animated or interactive elements on screen
+2. For visualizations with low complexity: **React**
+  * Static charts, with simple click states
+3. For feature rich visualizations with complex requiremnts: **DOM Emulation**
+  * Animated charts, connected to live data stores, with user interaction
+---
+#### Future Work
+
 * Offload heavier processes to web workers to free up main thread
-* Fix animations
+* Improve animations
 * Identify a consistent, scalable pattern for `enter`/`exit`/`update`
 ---
 #### Any questions?
