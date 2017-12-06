@@ -58,13 +58,9 @@ Enter: D3 and React
 
 #### D3
 ```javascript
-const data = _.flatten(
-  d3.range(10).map(x =>
-    d3.range(10).map(y =>
-      [x * 20, y * 20]
-    )
-  )
-);
+const data = _.flatten(d3.range(10).map(x =>
+  d3.range(10).map(y => [x, y])
+));
 
 const svg = d3.select('body')
   .append('svg')
@@ -330,6 +326,20 @@ Cons:
 * Performance degrades at scale. Can result in 100+ components _per chart_
 * No clear, clean way to handle D3's `enter`/`exit`/`update`
 * Syntax deviates from D3, causing extra work and awkward syntax
++++
+#### A simple chart example
+
+66 unique visual elements!
+
+![wow](https://raw.githubusercontent.com/liufly/Dual-scale-D3-Bar-Chart/master/preview/thumbnail.png)
+
++++
+
+#### A more complex example
+
+Over 1000 visual elements!
+
+![muchwow](https://i.imgur.com/FFRNhsa.png)
 ---
 #### The DOM Emulator
 
