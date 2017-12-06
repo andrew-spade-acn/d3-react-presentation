@@ -460,22 +460,22 @@ Cons:
 
 Using `Chrome 62.0.3202.94`
 
-| 10k Circles     | FMP    | Ready  | % of React |
-|-----------------|--------|--------|------------|
-| D3 Purist       | 660ms  | 717ms  | 15.04%     |
-| React Runaround | 4765ms | 4765ms | N/A        |
-| DOM Emulator    | 600ms  | 1225ms | 25.7%      |
+| 10k Circles | FMP    | Ready  | % React |
+|-------------|--------|--------|---------|
+| D3          | 660ms  | 717ms  | 15%     |
+| React       | 4765ms | 4765ms | N/A     |
+| Emulator    | 600ms  | 1225ms | 25.7%   |
 
 +++
 #### Performance Stats
 
 Using `Chrome 62.0.3202.94`
 
-| 100k Circles    | FMP     | Ready   | % of React |
-|-----------------|---------|---------|------------|
-| D3 Purist       | 3806ms  | 3950ms  | 6.7%       |
-| React Runaround | 58200ms | 58200ms | N/A        |
-| DOM Emulator    | 4266ms  | 9124ms  | 15.67%     |
+| 100k Circles | FMP    | Ready | % React |
+|--------------|--------|-------|---------|
+| D3           | 3.8s   | 3.9s  | 6.7%    |
+| React        | 58.2s  | 58.2s | N/A     |
+| Emulator     | 4.26s  | 9.12s | 15.6%   |
 
 ---
 #### What's the best approach?
