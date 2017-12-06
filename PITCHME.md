@@ -466,6 +466,12 @@ Using `Chrome 62.0.3202.94`
 | React Runaround | 4765ms | 4765ms | N/A        |
 | DOM Emulator    | 600ms  | 1225ms | 25.7%      |
 
+* FMP   -> First Meaningful Paint, excluding the circle grid
+* Ready -> Circle grid rendered
++++
+#### Performance Stats
+
+Using `Chrome 62.0.3202.94`
 
 | 100k Circles    | FMP     | Ready   | % of React |
 |-----------------|---------|---------|------------|
