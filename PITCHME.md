@@ -325,18 +325,18 @@ Pros:
 Cons:
 * Performance degrades at scale. Can result in 1000+ components _per chart_
 * No clear way to handle `enter`/`exit`/`update`
-* Syntax deviates from D3 => extra work and awkward syntax
+* Deviates from D3 => extra work and awkward syntax
 +++
 #### 1000+ components? How?!
 
-This is what a _maximally simple_ chart looks like. It has 66 unique visual elements!
+This is what a _super simple_ chart looks like, with axes and labels. 
+It has 66 unique visual elements!
 
 ![wow](https://raw.githubusercontent.com/liufly/Dual-scale-D3-Bar-Chart/master/preview/thumbnail.png)
 
 +++
 
-#### This _single chart_ has over 1000 visual elements!
-
+###### This _single chart_ has over 1000 visual elements!
 ![muchwow](https://i.imgur.com/FFRNhsa.png)
 ---
 #### The DOM Emulator
