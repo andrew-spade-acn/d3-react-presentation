@@ -39,6 +39,8 @@ An attempted definition:
   * Predictability of transpiled **`CoffeeScript`** vs **`TypeScript`**
 
 ---
+#### What's the goal?
+---
 
 ### D3 
 
