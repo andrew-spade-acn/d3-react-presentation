@@ -466,8 +466,6 @@ Using `Chrome 62.0.3202.94`
 | React Runaround | 4765ms | 4765ms | N/A        |
 | DOM Emulator    | 600ms  | 1225ms | 25.7%      |
 
-* FMP   -> First Meaningful Paint, excluding the circle grid
-* Ready -> Circle grid rendered
 +++
 #### Performance Stats
 
@@ -478,9 +476,6 @@ Using `Chrome 62.0.3202.94`
 | D3 Purist       | 3806ms  | 3950ms  | 6.7%       |
 | React Runaround | 58200ms | 58200ms | N/A        |
 | DOM Emulator    | 4266ms  | 9124ms  | 15.67%     |
-
-* FMP   -> First Meaningful Paint, excluding the circle grid
-* Ready -> Circle grid rendered
 
 ---
 #### What's the best approach?
