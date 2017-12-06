@@ -473,9 +473,8 @@ Using `Chrome 62.0.3202.94`
 | React Runaround | 58200ms | 58200ms | N/A        |
 | DOM Emulator    | 4266ms  | 9124ms  | 15.67%     |
 
-FMP        -> First Meaningful Paint, excluding the circle grid
-Ready      -> Circle grid rendered
-% of React -> Comparison of 'Ready' times
+* FMP   -> First Meaningful Paint, excluding the circle grid
+* Ready -> Circle grid rendered
 
 ---
 #### What's the best approach?
