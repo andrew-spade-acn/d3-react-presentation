@@ -367,7 +367,6 @@ export class CircleD3 extends Component {
 #### The DOM Emulator
 
 ```jsx
-/* ... */
   componentDidMount() {
     const data = fetchData();
     
@@ -376,13 +375,11 @@ export class CircleD3 extends Component {
     
     makeCircles(svg, data);
   }
-/* ... */
 ```
 +++
 #### The DOM Emulator
 
 ```jsx
-/* ... */
 componentDidMount() {
     
   // We'll make a fake <div> element
@@ -396,12 +393,10 @@ componentDidMount() {
   
   makeCircles(svg, data);
 }
-/* ... */
 ```
 +++
 #### The DOM Emulator
 ```jsx
-/* ... */
 render() {
   return (
     <div className='renderedD3'>
@@ -410,12 +405,10 @@ render() {
     </div>
   )
 }
-/* ... */
 ```
 +++
 #### The DOM Emulator
 ```jsx
-/* ... */
 // And wrap CircleD3 in a HOC, to attach the faux DOM methods
 return withFauxDOM(CircleD3);
 ```
