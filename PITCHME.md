@@ -50,11 +50,6 @@ An attempted definition:
 * Mediocre DX
 
 +++
-Change to actual example used later on
-#### Raw HTML
-```html
-  <line x1="0" y1="0" x2="200" y2="200"/>
-```
 
 #### D3
 ```javascript
@@ -82,6 +77,17 @@ svg.selectAll('circle')
   .attr('fill', 'blue')
 ```
 
++++
+#### Raw HTML
+```html
+<svg width='200' height='200'>
+  <g>
+    <circle cx='0' cy=0' r='2' fill='blue' />
+    <circle cx='20' cy=0' r='2' fill='blue' />
+    ...
+  </g>
+</svg
+```
 ![Dots](https://i.imgur.com/7M48Amm.png)
 
 ---
