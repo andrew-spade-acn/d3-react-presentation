@@ -300,7 +300,7 @@ export class CircleReact extends Component {
 ```jsx
 export class CircleReact extends Component {
   render() {
-    // MakeGrid is a HOC to abstract away 
+    // MakeGrid is a HOC* to abstract away 
     // the nested d3.range calls
     const CircleGrid = MakeGrid(Dot);
      
@@ -313,6 +313,14 @@ export class CircleReact extends Component {
     )
   }
 }
+```
+*
+```jsx
+// HOCs are functions that take a component and return an
+// enhanced component, usually with some new functionality
+const HOC = (component) => (newComponent);
+
+const enhancedComponent =  HOC(myComponent);
 ```
 +++
 
@@ -439,7 +447,7 @@ Pros:
 * We're rendering in React!
 * We get to keep HMR, TTD, component lifecycle hooks!
   * We can even have stateless componenets
-* Stress testing 100k circles, this renders 5x faster than approach #2
+* Stress testing 100k circles, this renders ~5x faster than approach #2
   * The heavy lifting happens outside of `render`, so the rest of the app is not blocked
 
 +++ 
@@ -448,16 +456,36 @@ Cons:
 * Slight performance implication due to overhead of DOM emulation
 * Animations are functional, but timings need work
 ---
-#### Show performance stats?
+#### Performance Stats
+
+Using `Chrome 62.0.3202.94`
+
+| 10k Circles     | FMP    | Ready  | % of React |
+|-----------------|--------|--------|------------|
+| D3 Purist       | 660ms  | 717ms  | 15.04%     |
+| React Runaround | 4765ms | 4765ms | N/A        |
+| DOM Emulator    | 600ms  | 1225ms | 25.7%      |
+
+
+| 100k Circles    | FMP     | Ready   | % of React |
+|-----------------|---------|---------|------------|
+| D3 Purist       | 3806ms  | 3950ms  | 6.7%       |
+| React Runaround | 58200ms | 58200ms | N/A        |
+| DOM Emulator    | 4266ms  | 9124ms  | 15.67%     |
+
+FMP        -> First Meaningful Paint, excluding the circle grid
+Ready      -> Circle grid rendered
+% of React -> Comparison of 'Ready' times
+
 ---
 #### What's the best approach?
 
 A hybrid solution, depending on the requirements:
-1. For demanding animations or extremely complex visualizations: **D3 in Canvas**
+1. For demanding animations or extremely complex visualizations: **The D3 Purist, in Canvas**
   * 1000+ animated or interactive elements on screen
-2. For visualizations with low complexity: **React**
+2. For visualizations with low complexity: **The React Runaround**
   * Static charts, with simple click states
-3. For feature rich visualizations with complex requirements: **DOM Emulation**
+3. For feature rich visualizations with complex requirements: **The DOM Emulator**
   * Animated charts, connected to live data stores, with user interaction
 ---
 #### Future Work
