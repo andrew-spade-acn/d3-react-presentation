@@ -336,7 +336,7 @@ It has 66 unique visual elements!
 
 +++
 
-#### Okay, but how does that lead to 1000?
+#### Okay, but how does that lead to 1000, in a _single chart_?
 
 +++
 
