@@ -39,7 +39,12 @@ An attempted definition:
   * Predictability of transpiled **`CoffeeScript`** vs **`TypeScript`**
 
 ---
-#### What's the goal?
+#### Objective
+
+Determine a method for building complex data visualizations with an emphasis on scalability and maintainability (and a great developer experience!)
+
+Enter: D3 and React
+
 ---
 
 ### D3 
@@ -216,7 +221,8 @@ export class CircleD3 extends Component {
   componentDidMount() {
     const data = fetchData();
     const svg = makeSVG('renderedD3', 100, 100); 
-    // We can break the D3 segments into separate 'elements' or 'partials'
+    // Pulling this functionality out lets us have
+    // D3 sections in separate 'elements' or 'partials'
     makeCircles(svg, data);
   }
   render() {
@@ -277,7 +283,7 @@ export class CircleReact extends Component {
 export class CircleReact extends Component {
   render() {
     return (
-      /* Pure React Components to wrap svg, circle, and g */
+      // SVG, G, Circle are simple wrapper components
       <SVG width={100} height={100}>
         <G>
           {d3.range(20).map(x =>
@@ -298,7 +304,8 @@ export class CircleReact extends Component {
 ```jsx
 export class CircleReact extends Component {
   render() {
-    /* MakeGrid is a HOC to abstract away the nested d3.range parts */
+    // MakeGrid is a HOC to abstract away 
+    // the nested d3.range calls
     const CircleGrid = MakeGrid(Dot);
      
     return (
@@ -326,7 +333,9 @@ Cons:
 ---
 #### The DOM Emulator
 
-What if we could trick D3 into thinking it's rendering DOM elements?
+What if we could trick D3 into thinking that it's rendering DOM elements? 
+
+We could then hand off the true rendering responsibilities to React.
 
 +++
 #### The DOM Emulator
@@ -346,23 +355,79 @@ export class CircleD3 extends Component {
 ```
 +++
 #### The DOM Emulator
+
+```jsx
+/* ... */
+  componentDidMount() {
+    const data = fetchData();
+    
+    // Here's our problem!
+    const svg = makeSVG('renderedD3', 100, 100); 
+    
+    makeCircles(svg, data);
+  }
+/* ... */
+```
++++
+#### The DOM Emulator
+
+```jsx
+/* ... */
+componentDidMount() {
+    
+  // We'll make a fake <div> element
+  // And assign it to this.props.chart
+  const faux = this.props.connectFauxDOM('div', 'chart');
+  
+  const data = fetchData();
+    
+  // And pass that into makeSVG
+  const svg = makeSVG(faux, 100, 100); 
+  
+  makeCircles(svg, data);
+}
+/* ... */
+```
++++
+#### The DOM Emulator
+```jsx
+/* ... */
+render() {
+  return (
+    <div className='renderedD3'>
+      // Then we'll render that prop
+      {this.props.chart}
+    </div>
+  )
+}
+/* ... */
+```
++++
+#### The DOM Emulator
+```jsx
+/* ... */
+// And wrap CircleD3 in a HOC, to attach the faux DOM methods
+return withFauxDOM(CircleD3);
+```
++++
+#### The DOM Emulator
 ```jsx
 export class CircleD3 extends Component {
   componentDidMount() {
     const faux = this.props.connectFauxDOM('div', 'chart'); // 1
     const data = fetchData();
-    const svg = makeSVG(faux, 100, 100); 
+    const svg = makeSVG(faux, 100, 100); // 2
     makeCircles(svg, data);
   }
   render() {
     return (
       <div className='renderedD3'>
-        {this.props.chart} // 2
+        {this.props.chart} // 3
       </div>
     )
   }
 }
-return withFauxDOM(DotChartTwo); // 3
+return withFauxDOM(CircleD3); // 4
 ```
 +++
 
