@@ -336,7 +336,10 @@ It has 66 unique visual elements!
 
 +++
 
-###### This _single chart_ has over 1000 visual elements!
+#### Okay, but how does that lead to 1000?
+
++++
+
 ![muchwow](https://i.imgur.com/FFRNhsa.png)
 ---
 #### The DOM Emulator
