@@ -79,12 +79,12 @@ const MyDiv = styled.div`
 `;
 
 const greet = (name) => {
-  return `Hello, ${name}!`
+  return `Hello, ${name}!`;
 };
 
 export default Component = () => (
   <MyDiv>
-    { greet('friends') }
+    {greet('friends')}
   </MyDiv>
 );
 ```
@@ -124,7 +124,7 @@ export class CircleD3 extends Component {
     const data = fetchData();  
   }  
   render() {
-    return ( <div className='renderedD3' /> );
+    return (<div className='renderedD3' />)
   }
 }
 ```
@@ -141,7 +141,7 @@ export class CircleD3 extends Component {
       .append('g');
   }  
   render() {
-    return ( <div className='renderedD3' /> );
+    return (<div className='renderedD3' />)
   }
 }
 ```
@@ -155,7 +155,7 @@ export class CircleD3 extends Component {
     const svg = makeSVG('renderedD3', 100, 100);   
   }
   render() {
-    return ( <div className='renderedD3' /> );
+    return (<div className='renderedD3' />)
   }
 }
 ```
@@ -176,7 +176,7 @@ export class CircleD3 extends Component {
       .attr('fill', () => ( getColor ))   
   }
   render() {
-    return ( <div className='renderedD3' /> );
+    return (<div className='renderedD3' />)
   }
 }
 ```
@@ -187,10 +187,11 @@ export class CircleD3 extends Component {
   componentDidMount() {
     const data = fetchData();
     const svg = makeSVG('renderedD3', 100, 100); 
+    // We can break the D3 segments into separate 'elements' or 'partials'
     makeCircles(svg, data);
   }
   render() {
-    return ( <div className='renderedD3' /> );
+    return (<div className='renderedD3' />)
   }
 }
 ```
@@ -350,7 +351,7 @@ Cons:
 * Slight performance implication due to overhead of DOM emulation
 * Animations are functional, but timings need work
 ---
-#### Show performance stats
+#### Show performance stats?
 ---
 #### What's the best approach?
 
