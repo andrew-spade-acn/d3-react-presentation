@@ -319,25 +319,23 @@ export class CircleReact extends Component {
 Pros:
 * This looks like React!
 * HOCs are a great pattern for enhancing components
-* Can break into smaller components, leading to modular+reusable code
+* Can break into smaller components
 * HMR, TTD, and lifecycle hooks!
 
 Cons:
-* Performance degrades at scale. Can result in 100+ components _per chart_
-* No clear, clean way to handle D3's `enter`/`exit`/`update`
-* Syntax deviates from D3, causing extra work and awkward syntax
+* Performance degrades at scale. Can result in 1000+ components _per chart_
+* No clear way to handle `enter`/`exit`/`update`
+* Syntax deviates from D3 => extra work and awkward syntax
 +++
-#### A simple chart example
+#### 1000+ components? How?!
 
-66 unique visual elements!
+This is what a _maximally simple_ chart looks like. It has 66 unique visual elements!
 
 ![wow](https://raw.githubusercontent.com/liufly/Dual-scale-D3-Bar-Chart/master/preview/thumbnail.png)
 
 +++
 
-#### A more complex example
-
-Over 1000 visual elements!
+#### This _single chart_ has over 1000 visual elements!
 
 ![muchwow](https://i.imgur.com/FFRNhsa.png)
 ---
