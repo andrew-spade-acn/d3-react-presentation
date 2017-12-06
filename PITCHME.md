@@ -50,7 +50,7 @@ An attempted definition:
 * Mediocre DX
 
 +++
-
+Change to actual example used later on
 #### Raw HTML
 ```html
   <line x1="0" y1="0" x2="200" y2="200"/>
@@ -58,10 +58,31 @@ An attempted definition:
 
 #### D3
 ```javascript
-d3.svg.line()
-  .x( (d) => (d.x) )
-  .y( (d) => (d.y) );
+const data = _.flatten(
+  d3.range(10).map(x =>
+    d3.range(10).map(y =>
+      [x * 20, y * 20]
+    )
+  )
+);
+
+const svg = d3.select('body')
+  .append('svg')
+  .attr('width', 200)
+  .attr('height', 200)
+  .append('g');
+
+svg.selectAll('circle')
+  .data(data)
+  .enter()
+  .append('circle')
+  .attr('cx', (d) => (d[0]))
+  .attr('cy', (d) => (d[1]))
+  .attr('r', 2)
+  .attr('fill', 'blue')
 ```
+
+![Dots](https://i.imgur.com/7M48Amm.png)
 
 ---
 
@@ -289,11 +310,11 @@ export class CircleReact extends Component {
 Pros:
 * This looks like React!
 * HOCs are a great pattern for enhancing components
-* Can break everything into smaller components, leading to modular, reusable code
+* Can break into smaller components, leading to modular+reusable code
 * HMR, TTD, and lifecycle hooks!
 
 Cons:
-* Performance degrades at scale. Can result in 100+ (or even 1000+) nested components _per chart_
+* Performance degrades at scale. Can result in 100+ components _per chart_
 * No clear, clean way to handle D3's `enter`/`exit`/`update`
 * Syntax deviates from D3, causing extra work and awkward syntax
 ---
@@ -345,7 +366,7 @@ Pros:
 * We get to keep HMR, TTD, component lifecycle hooks!
   * We can even have stateless componenets
 * Stress testing 100k circles, this renders 5x faster than approach #2
-  * Further, the heavy lifting happens outside of `render`, meaning the rest of the app is not blocked
+  * The heavy lifting happens outside of `render`, so the rest of the app is not blocked
 
 +++ 
 
@@ -357,12 +378,12 @@ Cons:
 ---
 #### What's the best approach?
 
-A hybrid solution:
+A hybrid solution, depending on the requirements:
 1. For demanding animations or extremely complex visualizations: **D3 in Canvas**
   * 1000+ animated or interactive elements on screen
 2. For visualizations with low complexity: **React**
   * Static charts, with simple click states
-3. For feature rich visualizations with complex requiremnts: **DOM Emulation**
+3. For feature rich visualizations with complex requirements: **DOM Emulation**
   * Animated charts, connected to live data stores, with user interaction
 ---
 #### Future Work
